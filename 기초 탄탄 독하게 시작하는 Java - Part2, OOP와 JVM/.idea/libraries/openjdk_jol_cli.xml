@@ -1,0 +1,12 @@
+<component name="libraryTable">
+  <library name="openjdk.jol.cli" type="repository">
+    <properties maven-id="org.openjdk.jol:jol-cli:0.17" />
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/org/openjdk/jol/jol-cli/0.17/jol-cli-0.17.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/org/openjdk/jol/jol-core/0.17/jol-core-0.17.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/net/sf/jopt-simple/jopt-simple/4.6/jopt-simple-4.6.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
