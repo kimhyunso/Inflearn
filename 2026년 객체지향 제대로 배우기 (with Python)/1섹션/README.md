@@ -161,6 +161,7 @@ class Lecture:
     def __init__(self, title):
         self.title = title
         self.teacher = "hong"
+
     def get_info(self):
         return f"{self.title}"
 
@@ -168,6 +169,7 @@ class Student:
     def __init__(self, name):
         self.name = name
         self.progress = 0
+
     def study(self):
         self.progress += 10
 
@@ -312,3 +314,55 @@ class Police:
 
 **모든 객체가 Is-a, Has-a (구조적) 관계를 맺을 필요는 없다**
 
+## 객체지향 4대 요소
+1. 추상화
+2. 캡슐화
+3. 상속
+4. 다형성
+
+## 추상화: 핵심만 남긴다
+- 공통적이고 본질적인 특징만 추출
+
+## 캡슐화: 감추기
+
+```python
+class Account:
+    def __init__(self):
+        self.__money = 0
+    
+    def deposit(self, amount):
+        if amount > 0:
+            self.__money += amount
+```
+
+## 상속: 물려받기
+- 부모: 일반적 / 자식: 구체화
+- 주의: Is-a 관계가 확실할 때에만 사용해야함
+
+## 다형성: 갈아끼우기
+- 동일한 메시지에서 다른 동작
+- 같은 메서드를 호출해도 객체마다 다르게 동작하는 것
+- 캐릭터 -> Attack() -> 전사: 칼을 휘두름, 마법사: 불을 던짐
+
+## 문맥에 따른 추상화의 차이
+- 똑같은 사람이라도 어떤 프로그램이냐에 따라 달라짐
+- 병원: 몸무게, 키, 혈액형 데이터 필요 / 은행: 신용등급, 통장번호 데이터 필요
+
+
+## 캡슐화: 보호와 책임
+- 정보 은닉
+1. 데이터 보호
+2. **무결성 보장**: 유효하지 않은 값 차단
+* 무결성: 데이터가 결함이 없는것
+
+```python
+class Account:
+    def __init__(self):
+        self.__money = 0
+    
+    def deposit(self, amount):
+        if amount < 0:
+            print("마이너스 입금 불가!")
+            return
+        self.__money += amount
+```
