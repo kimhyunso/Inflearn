@@ -320,6 +320,8 @@ class Police:
 3. 상속
 4. 다형성
 
+# 5챕터
+
 ## 추상화: 핵심만 남긴다
 - 공통적이고 본질적인 특징만 추출
 
@@ -348,6 +350,7 @@ class Account:
 - 똑같은 사람이라도 어떤 프로그램이냐에 따라 달라짐
 - 병원: 몸무게, 키, 혈액형 데이터 필요 / 은행: 신용등급, 통장번호 데이터 필요
 
+# 6챕터
 
 ## 캡슐화: 보호와 책임
 - 정보 은닉
@@ -366,3 +369,171 @@ class Account:
             return
         self.__money += amount
 ```
+
+# 7챕터
+
+## 다양성
+- 같은 메서드 호출
+- 다른 동작
+- 다른 결과
+- if-else 제거, 확장하기 쉬운 코드를 만듦
+
+## **오버라이딩**
+- 부모가 물려준 기능을 내 방식대로 재정의함
+
+### 절차지향 코드 (Bad)
+
+```python
+def attack(character):
+    if character.type == "Warrior":
+        print("대검 베기!")
+    elif character.type == "Mage":
+        print("파이어볼!")
+    elif character.type == "Archer":
+        print("연속 화살!")
+```
+
+## 객체지향 (Good)
+
+```python
+def attack(character):
+    character.attack()
+```
+
+## 다형성의 효과: 확장성
+- OCP: 개방-폐쇄 원칙
+
+## 파이썬의 다형성: 오리 타이핑 (Dock Typing)
+- 파이썬은 상속 없이도 다형성이 가능함
+
+```python
+class Dog:
+    def speak(self):
+        print("멍멍")
+
+class Cat:
+    def speak(self):
+        print("야옹~")
+
+class Robot:
+    def speak(self):
+        print("삐리리~")
+
+objs = [Dog(), Cat(), Robot()]
+
+for o in objs:
+    o.speak()
+```
+
+# 챕터8
+
+## SOLID
+- 객체지향 설계 5원칙
+
+### 나쁜 설계
+- 하나 고치면 다 고장남 (경직성)
+- 어디가 문제인지 모름 (취약성)
+- 재사용 불가능 (부동성)
+
+### 좋은 설계
+- 변경에 유연함 (유연성)
+- 수정해도 쉽게 깨지지 않음 (안정성)
+- 재사용 가능한 구조 (재사용성)
+
+## SRP: 단일 책임원칙
+- **하나는 하나만 해라**
+
+### Bad: 맥가이버 칼 (God Class)
+
+```
+class User:
+- 로그인()
+- 이메일 보내기()
+- 데이터베이스 저장()
+- 로그 남기기()
+```
+
+### Good: 전문가 도구
+
+```
+class User(데이터만)
+class EmailSender(전송만)
+class UserRepository(DB만)
+```
+
+## OCP: 계방-폐쇠 원칙
+- **확장에 열려있고, 변경에는 닫혀있어야함**
+
+### 나쁜 코드
+
+```python
+if type == "Dog": 
+    bark()
+elif type == "Cat":
+    meow()
+```
+
+### 좋은 코드
+
+```python
+animal.speak()
+```
+
+## LSP: 리스코프 치환 원칙
+- 자식클래스는 부모 클래스를 **대체**할 수 있어야함
+
+### 대표 위반 사례: 펭귄
+- 펭귄은 날지 못함
+
+```python
+class Bird:
+class Penguin(Bird):
+```
+
+## ISP: 인터페이스 분리 원칙
+- 내가 사용하지 않는 기능에 의존하게 만들지 마라
+- **인터페이스는 작고 목적에 맞게 나누는게 더 좋다**
+- **안 쓰는 건 강요 말라**
+
+### Bad: 범용 인터페이스
+- 복합기 기능
+1. print()
+2. scan()
+3. fax()
+
+### Good: 인터페이스 분리
+- 필요한 기능만 골라쓰기
+- Printer.print()
+- Scanner.scan()
+
+## DIP: 의전 역전 원칙
+- **구체적인 것이 아닌 추상적인 것에 의존하라**
+
+> 로봇이 특정 건전지에 의존한다면 특정건전지가 단종되었을 때, 문제가 발생함
+> 따라서, 로봇은 건전지 규격(AA 사이즈)를 의존하는 것이 좋음 - 배터리가 무엇이든 쉽게 갈아끼울 수 있음
+
+```python
+# 추상화 (Interface/Abstract Class)
+class Battery:
+    def use(self):
+        pass
+
+# 구체적인 구현
+class Energizer(Battery):
+    def use(self):
+        print("에너자이저 파워")
+
+class Robot:
+    def __init__(self, battery:Battery):
+        self.battery = battery
+    
+    def operate(self):
+        self.battery.use()
+
+
+robot = Robot(Energizer()) 
+robot.operate()
+```
+
+
+
