@@ -118,3 +118,37 @@ Lecture.no_self_method()
 1. 책임의 단위
 2. 현실의 모델링
 3. 새로운 타입
+
+# 12챕터
+## `__init__`과 `super()`
+### `__init__`
+- 객체가 메모리에 생성될 때 가장 먼저 호출되는 함수
+- 데이터 세팅 필수 단계
+
+### 오버라이딩 (Overriding)
+- 부모의 생성자를 오버라이딩하면 자식의 생성자로 덮어씌어진다.
+
+```python
+class Parent:
+    def __init__(self):
+        self.money = 10000
+
+class Child(Parent):
+    def __init__(self):
+        self.hobby = "게임"
+```
+
+### `super()`
+
+```python
+class Parent:
+    def __init__(self):
+        self.money = 10000
+
+class Child(Parent):
+    def __init__(self):
+        super().__init__()
+        self.hobby = "게임"
+```
+
+
