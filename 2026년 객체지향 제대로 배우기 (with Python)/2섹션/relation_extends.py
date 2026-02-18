@@ -24,11 +24,18 @@ class Material:
         print(f"다운로드 중: {self.content}")
 
 class Lecture:
-    def __init__(self, title):
+    # def __init__(self, title):
+    #     self.title = title
+    #     # 강의는 자료를 가짐 (Lectrue has a Material)
+    #     # 생성자에서 부품 객체를 생성하여 소유
+    #     self.material = Material(title + "_강의자료.pdf")
+
+    # 외부에서 주입받는 경우 (DI)
+    def __init__(self, title, material):
         self.title = title
         # 강의는 자료를 가짐 (Lectrue has a Material)
-        # 생성자에서 ㅂ주품 객체를 생성하여 소유
-        self.material = Material(title + "_강의자료.pdf")
+        # 생성자에서 부품 객체를 생성하여 소유
+        self.material = material
 
     def show_material(self):
         print(f"[{self.title}] 자료 확인:")
@@ -42,8 +49,15 @@ i = Instructor("hong", "h002")
 i.login()
 i.teach()
 
-python_lec = Lecture("파이썬기초")
+# python_lec = Lecture("파이썬기초")
+# python_lec.show_material()
+
+# java_lec = Lecture("자바기초")
+# java_lec.show_material()
+
+# 외부에서 주입받는 경우
+python_lec = Lecture("파이썬기초", Material("파이썬기초_강의자료.pdf"))
 python_lec.show_material()
 
-java_lec = Lecture("자바기초")
+java_lec = Lecture("자바기초", Material("자바기초_강의자료.pdf"))
 java_lec.show_material()
