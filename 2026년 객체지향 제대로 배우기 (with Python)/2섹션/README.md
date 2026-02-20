@@ -151,4 +151,41 @@ class Child(Parent):
         self.hobby = "게임"
 ```
 
+# 13챕터
+## Name Manglling (네임 맹글링)
+- __변수명
+
+```python
+class Student:
+    def __init__(self):
+        self.__gpa = 4
+
+s = Student()
+# s.__gpa = 10 # 에러
+```
+
+
+## `@property`
+- getter, setter
+
+```python
+class Student:
+    @property
+    def gpa(self):
+        return self.__gpa
+
+    @gpa.setter
+    def gpa(self, val):
+        self.__gpa = val
+
+s = Student()
+# 변수처럼 실행하지만 메소드가 실행됨
+s.gpa = 4.0
+val = s.gpa
+```
+
+
+
+
+
 
