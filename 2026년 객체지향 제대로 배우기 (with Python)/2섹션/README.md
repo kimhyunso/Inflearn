@@ -184,8 +184,40 @@ s.gpa = 4.0
 val = s.gpa
 ```
 
+# 14챕터
+## 다형성
+- 같은 메시지, 다른 동작
 
+## 다형성이 필요한 순간
+- OCP 원칙 위반
 
+```python
+def pay(method):
+    if methd == "CARD":
+        print("카드 결제")
+    elif methd == "BANK":
+        print("계좌 이체")
+    elif methd == "PAYPAL":
+        print("페이팔")
+    # 새로운 결제 추가 시 여기 또 수정 ...
+```
 
+## 1. 오버라이딩
+- 부모 객체를 물려받아 자식의 방식대로 **재정의**
 
+```python
+class Payment:
+    def pay():
+        pass
 
+class CreditCard(Payment):
+    def pay():
+        print("카드 긁기")
+
+class BankTransfer(Payment):
+    def pay():
+        print("이체 하기")
+```
+
+## 2. Duck Typing
+- 상속 없이도 메서드 이름만 같으면 됨
