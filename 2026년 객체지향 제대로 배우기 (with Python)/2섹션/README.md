@@ -221,3 +221,25 @@ class BankTransfer(Payment):
 
 ## 2. Duck Typing
 - 상속 없이도 메서드 이름만 같으면 됨
+
+# 15챕터
+## 파이썬 추상 클래스
+### 추상 클래스 필요 이유
+- 부모가 틀을 만들었지만, 자식이 구현을 하지 않는다면
+- abc 모듈 (Abstract Base Class: 추상 기반 클래스)
+
+```python
+from abc import ABC, abstractmethod
+
+class Payment(ABC):
+    @abstractmethod
+    def pay(self, amount):
+        pass
+```
+
+### 추상 클래스의 절대 규칙
+1. 인스턴화 불가
+2. 오버라이딩 강제
+
+
+
